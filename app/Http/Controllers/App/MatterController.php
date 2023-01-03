@@ -11,19 +11,29 @@ class MatterController extends BaseController {
     protected MatterRequest $request;
 
     public function __construct() {
-        $this -> request =  new MatterRequest();
+        $this->request = new MatterRequest();
     }
 
-    public function index(Request $args){
-        $this -> request -> setRequest($args);
-        $response = $this -> request -> index();
+    public function index(Request $args) {
+        $this->request->setRequest($args);
+        $response = $this->request->index();
         return $this->getResponse($response);
     }
 
-    public function show(Request $args, int $id){
-        $this -> request -> setRequest($args);
-        $response = $this -> request -> show($id);
+    public function show(Request $args, int $id) {
+        $this->request->setRequest($args);
+        $response = $this->request->show($id);
         return $this->getResponse($response);
+    }
+
+    /**
+     * @param Request $args
+     * @return void
+     */
+    public function create(Request $args) {
+        $this->request->setRequest($args);
+        $response = $this->request->create();
+
     }
 
 }

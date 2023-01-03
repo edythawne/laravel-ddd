@@ -34,7 +34,7 @@ class BaseRequest {
      * @param array $rules
      * @return void
      */
-    protected function applyRules(array $rules) {
+    protected function applyRules(array $rules): void {
         $validator = Validator::make($this->getParseRequest(), $rules);
         $this->isValid($validator);
     }

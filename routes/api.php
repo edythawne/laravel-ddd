@@ -28,5 +28,5 @@ Route::prefix('matter') -> group(function () {
 
     Route::get('/index', [MatterController::class, 'index']);
     Route::get('/show/{id}', [MatterController::class, 'show']);
-
+    Route::post('/create', [MatterController::class, 'create']);
 });
