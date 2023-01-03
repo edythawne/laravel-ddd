@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Arch\Domain\Iterators\Request\App\MatterRequest;
 use App\Http\Controllers\BaseController;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MatterController extends BaseController {
@@ -28,12 +29,12 @@ class MatterController extends BaseController {
 
     /**
      * @param Request $args
-     * @return void
+     * @return JsonResponse
      */
     public function create(Request $args) {
         $this->request->setRequest($args);
         $response = $this->request->create();
-
+        return $this->getResponse($response);
     }
 
 }

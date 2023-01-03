@@ -10,6 +10,7 @@ use App\Arch\Domain\UseCases\App\Matter\GetMatter;
 class MatterRequest extends BaseRequest {
 
     private GetMatter $caseGet;
+    private CreateMatter $caseCreate;
 
     public function __construct() {
 
@@ -31,16 +32,20 @@ class MatterRequest extends BaseRequest {
     }
 
     public function create() : BaseResponse {
-        $caseCreate = new CreateMatter();
+        $this->caseCreate = new CreateMatter();
 
         $this->applyRules([
             'area_id' => 'required|integer',
             'abbreviation' => 'required|string',
             'name' => 'required|string'
         ]);
-        $caseCreate-> setAttributes($this->getParseRequest());
+        $this->caseCreate-> setAttributes($this->getParseRequest());
 
-        return $caseCreate->create();
+        return $this->caseCreate->create();
+    }
+
+    public function new(){
+
     }
 
 }

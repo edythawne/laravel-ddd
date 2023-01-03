@@ -29,15 +29,15 @@ class MatterRepository extends Repository implements GetIterator, GetPaginatedIt
     }
 
     public function create(array $attributes): array {
-        DB::transaction();
+        DB::beginTransaction();
 
         try {
             $matter = Matter::new($attributes);
-            $user = User::new($attributes, $matter['id']);
-
             DB::commit();
+            return $matter ?? [];
         } catch (\Exception $exception) {
-
+            DB::rollBack();
+            dd($exception->getMessage());
         }
     }
 

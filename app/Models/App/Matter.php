@@ -55,4 +55,8 @@ class Matter extends Model {
         return self::base() -> paginate() -> withQueryString();
     }
 
+    public static function new(array $attributes): ?array {
+        return Matter::firstOrCreate($attributes)?->toArray();
+    }
+
 }
